@@ -193,6 +193,8 @@ Resources:
 
   DockerManager2:
     Type: "AWS::EC2::Instance"
+    DependsOn:
+        - DockerManager1
     Properties:
       LaunchTemplate:
         LaunchTemplateId: !Ref ManagersLT
@@ -204,6 +206,8 @@ Resources:
           Value: "203"
   DockerManager3:
     Type: "AWS::EC2::Instance"
+    DependsOn:
+        - DockerManager2
     Properties:
       LaunchTemplate:
         LaunchTemplateId: !Ref ManagersLT
@@ -215,6 +219,8 @@ Resources:
           Value: "203"
   DockerWorker1:
     Type: "AWS::EC2::Instance"
+    DependsOn:
+        - DockerManager1
     Properties:
       LaunchTemplate:
         LaunchTemplateId: !Ref WorkersLT
@@ -226,6 +232,8 @@ Resources:
           Value: "203"
   DockerWorker2:
     Type: "AWS::EC2::Instance"
+    DependsOn:
+        - DockerManager1
     Properties:
       LaunchTemplate:
         LaunchTemplateId: !Ref WorkersLT
